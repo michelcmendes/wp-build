@@ -35,4 +35,3 @@ WORKDIR /var/www/html
 # Expose port 9000 and start PHP-FPM
 EXPOSE 9000
 CMD ["php-fpm"]
-
