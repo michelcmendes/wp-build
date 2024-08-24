@@ -26,15 +26,16 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ${{ runner.temp }}/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          key: ${{ runner.os }}-buildx-${{ github.ref }}-${{ github.sha }}
           restore-keys: |
+            ${{ runner.os }}-buildx-${{ github.ref }}-
             ${{ runner.os }}-buildx-
 
       - name: Build Docker image
-        run: docker build --cache-from=type=local,src=${{ runner.temp }}/.buildx-cache --target builder -t wp-release:builder .
+        run: docker buildx build --cache-from=type=local,src=${{ runner.temp }}/.buildx-cache --target builder -t wp-release:builder .
 
       - name: Build final Docker image
-        run: docker build --cache-from=type=local,src=${{ runner.temp }}/.buildx-cache --target production -t wp-release:${{ env.VERSION }} .
+        run: docker buildx build --cache-from=type=local,src=${{ runner.temp }}/.buildx-cache --target production -t wp-release:${{ env.VERSION }} .
 
       - name: Security Scan with Trivy
         uses: aquasecurity/trivy-action@master
