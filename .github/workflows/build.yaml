@@ -23,15 +23,11 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build Docker image (builder stage)
-        run: docker buildx build \
-          --target builder \
-          -t wp-release:builder .
+        run: docker buildx build --target builder -t wp-release:builder .
 
       - name: Build final Docker image (production stage)
-        run: docker buildx build \
-          --target production \
-          -t wp-release:${{ env.VERSION }} \
-          --load  # Load the image into the local Docker instance for further use
+        run: docker buildx build--target production -t wp-release:${{ env.VERSION }} --load  
+        # Load the image into the local Docker instance for further use
 
       - name: Security Scan with Trivy
         uses: aquasecurity/trivy-action@master
