@@ -25,16 +25,16 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
-          path: .buildx-cache
+          path: ${{ runner.temp }}/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
 
       - name: Build Docker image
-        run: docker build --cache-from=type=local,src=.buildx-cache --target builder -t wp-release:builder .
+        run: docker build --cache-from=type=local,src=${{ runner.temp }}/.buildx-cache --target builder -t wp-release:builder .
 
       - name: Build final Docker image
-        run: docker build --cache-from=type=local,src=.buildx-cache --target production -t wp-release:${{ env.VERSION }} .
+        run: docker build --cache-from=type=local,src=${{ runner.temp }}/.buildx-cache --target production -t wp-release:${{ env.VERSION }} .
 
       - name: Security Scan with Trivy
         uses: aquasecurity/trivy-action@master
