@@ -15,8 +15,13 @@
     },
     "autoload": {
         "psr-4": {
-            "YourNamespace\\": "src/"
+            "wp-ecommerce\\": "src/"
         }
+    },
+    "autoload-dev": {
+    "psr-4": {
+        "wp-ecommerce\\Tests\\": "tests/"
+    }
     },
     "repositories": [
         {
