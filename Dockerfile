@@ -14,11 +14,14 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-# Copy the WordPress core files
-COPY . .
+# Copy the Composer configuration
+COPY composer.json ./
 
 # Install WordPress dependencies
 RUN composer install --no-dev --optimize-autoloader
+
+# Copy the WordPress core files
+# COPY . .
 
 # Stage 2: Create the final image
 FROM php:8.2-fpm-alpine
