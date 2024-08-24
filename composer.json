@@ -4,14 +4,14 @@
     "type": "project",
     "require": {
         "php": "^8.0",
-        "johnpbloch/wordpress": "^6.2",
-        "wpackagist-plugin/akismet": "^5.0",
+        "johnpbloch/wordpress": "^6.6",
+        "wpackagist-plugin/akismet": "^5.3",
         "wpackagist-theme/twentytwentyone": "^2.0",
         "wpackagist-plugin/wp-redis": "^1.4",
         "wpackagist-plugin/wp-native-php-sessions": "^1.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.5"
+        "phpunit/phpunit": "^9.6"
     },
     "autoload": {
         "psr-4": {

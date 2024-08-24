@@ -18,8 +18,7 @@ WORKDIR /var/www/html
 COPY composer.json ./
 
 # Install WordPress dependencies
-#RUN composer install --no-dev --optimize-autoloader
-RUN composer install --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader
 
 # Copy the WordPress core files
 # COPY . .
