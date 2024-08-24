@@ -26,8 +26,14 @@ jobs:
         run: docker buildx build --load --target builder -t wp-release:builder .
 
       - name: Build final Docker image (production stage)
-        run: docker buildx build --target production -t wp-release:${{ env.VERSION }} .
+        run: docker buildx build --target production -t wp-release:${{ env.VERSION }} . --load
         # Load the image into the local Docker instance for further use
+
+      # Tag and push Docker image to local registry
+      - name: Tag and push Docker image
+        run: |
+          docker tag wp-release:${{ env.VERSION }} repository:5000/wp-release:${{ env.VERSION }}
+          docker push repository:5000/wp-release:${{ env.VERSION }}
 
       - name: Security Scan with Trivy
         uses: aquasecurity/trivy-action@master
