@@ -37,7 +37,7 @@ jobs:
         run: docker build --cache-from=type=local,src=/tmp/.buildx-cache --target production -t wp-release:${{ env.VERSION }} .
 
       - name: Security Scan with Trivy
-        uses: aquasecurity/trivy-action@latest #v0.24.0
+        uses: aquasecurity/trivy-action@v0.24.0
         with:
           image-ref: wp-release:${{ env.VERSION }}
 
