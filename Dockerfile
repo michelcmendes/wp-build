@@ -1,5 +1,5 @@
 # Stage 1: Build the WordPress environment
-FROM php:8.2-fpm-alpine as builder
+FROM php:8.2-fpm-alpine AS builder
 
 # Install dependencies
 RUN apk add --no-cache \
@@ -24,7 +24,7 @@ RUN composer install --no-dev --optimize-autoloader
 # COPY . .
 
 # Stage 2: Create the final image
-FROM php:8.2-fpm-alpine
+FROM php:8.2-fpm-alpine AS production
 
 # Copy only necessary files from the build stage
 COPY --from=builder /var/www/html /var/www/html

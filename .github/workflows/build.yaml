@@ -31,11 +31,20 @@ jobs:
             ${{ runner.os }}-buildx-${{ github.ref }}-
             ${{ runner.os }}-buildx-
 
-      - name: Build Docker image
-        run: docker buildx build --cache-to=type=local,dest=${{ runner.temp }}/.buildx-cache --cache-from=type=local,src=${{ runner.temp }}/.buildx-cache --target builder -t wp-release:builder .
+      - name: Build Docker image (builder stage)
+        run: docker buildx build \
+          --cache-to=type=local,dest=${{ runner.temp }}/.buildx-cache \
+          --cache-from=type=local,src=${{ runner.temp }}/.buildx-cache \
+          --target builder \
+          -t wp-release:builder .
 
-      - name: Build final Docker image
-        run: docker buildx build --cache-to=type=local,dest=${{ runner.temp }}/.buildx-cache --cache-from=type=local,src=${{ runner.temp }}/.buildx-cache --target production -t wp-release:${{ env.VERSION }} .
+      - name: Build final Docker image (production stage)
+        run: docker buildx build \
+          --cache-to=type=local,dest=${{ runner.temp }}/.buildx-cache \
+          --cache-from=type=local,src=${{ runner.temp }}/.buildx-cache \
+          --target production \
+          -t wp-release:${{ env.VERSION }} \
+          --load  # Load the image into the local Docker instance for further use
 
       - name: Security Scan with Trivy
         uses: aquasecurity/trivy-action@master
