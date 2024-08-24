@@ -32,8 +32,8 @@ jobs:
       # Tag and push Docker image to local registry
       - name: Tag and push Docker image
         run: |
-          docker tag wp-release:${{ env.VERSION }} repository:5000/wp-release:${{ env.VERSION }}
-          docker push repository:5000/wp-release:${{ env.VERSION }}
+          docker tag wp-release:${{ env.VERSION }} localhost:5000/wp-release:${{ env.VERSION }}
+          docker push localhost:5000/wp-release:${{ env.VERSION }}
 
       - name: Security Scan with Trivy
         uses: aquasecurity/trivy-action@master
