@@ -23,7 +23,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
 
       - name: Build Docker image (builder stage)
-        run: docker buildx build --target builder -t wp-release:builder .
+        run: docker buildx build --load --target builder -t wp-release:builder .
 
       - name: Build final Docker image (production stage)
         run: docker buildx build --target production -t wp-release:${{ env.VERSION }} .
