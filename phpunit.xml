@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="tests/bootstrap.php"
+         colors="true"
+         verbose="true">
+    <testsuites>
+        <testsuite name="WordPress Tests">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <env name="WP_ENVIRONMENT_TYPE" value="testing"/>
+        <env name="DB_NAME" value=":memory:"/>
+        <env name="DB_USER" value="root"/>
+        <env name="DB_PASSWORD" value=""/>
+        <env name="DB_HOST" value="localhost"/>
+        <env name="WP_DEBUG" value="true"/>
+    </php>
+</phpunit>
