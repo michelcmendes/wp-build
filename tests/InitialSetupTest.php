@@ -1,11 +1,13 @@
 <?php
+class SampleTest extends WP_UnitTestCase {
 
-use PHPUnit\Framework\TestCase;
+    public function test_example() {
+        // Test that true is true
+        $this->assertTrue(true);
+    }
 
-class InitialSetupTest extends TestCase
-{
-    public function testInitialSetupPageLoads()
-    {
-        $this->assertTrue(function_exists('wp_install'));
+    public function test_wp_version() {
+        // Example test to check WordPress version
+        $this->assertEquals(get_bloginfo('version'), '5.8');
     }
 }

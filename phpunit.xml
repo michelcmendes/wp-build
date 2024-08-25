@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="tests/bootstrap.php"
          colors="true"
-         verbose="true"
          stopOnFailure="false">
     <testsuites>
         <testsuite name="WordPress Tests">
-            <directory>tests/</directory>
+            <directory>./tests/</directory>
         </testsuite>
     </testsuites>
-
+    <filter>
+        <whitelist>
+            <directory suffix=".php">./wp-content/plugins/custom-plugin</directory>
+        </whitelist>
+    </filter>
     <php>
         <env name="WP_ENVIRONMENT_TYPE" value="testing"/>
         <env name="DB_NAME" value=":memory:"/>
