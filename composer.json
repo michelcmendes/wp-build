@@ -15,9 +15,12 @@
         "lucatume/wp-browser": "^3.0",
         "vlucas/phpdotenv": "^5.4"
     },
-    "scripts": {
-        "test": "phpunit"
-    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
