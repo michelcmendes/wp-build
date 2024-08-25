@@ -4,6 +4,7 @@
     "type": "project",
     "require": {
         "php": "^8.2",
+        "ext-mysqli": "*",
         "johnpbloch/wordpress-core-installer": "^2.0",
         "johnpbloch/wordpress": "^6.3",
         "wpackagist-plugin/akismet": "^5.3",
