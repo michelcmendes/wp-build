@@ -19,36 +19,24 @@ jobs:
           VERSION=$(jq -r '.version' manifest.json)
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
-      # Setting up PHP to run PHPUnit tests
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-
-      - name: Install Composer dependencies
-        run: composer install --no-interaction --prefer-dist --optimize-autoloader
-
-      - name: Set up In-Memory DB
-        run: |
-          echo "DB_NAME=:memory:" >> .env
-          echo "DB_USER=root" >> .env
-          echo "DB_PASSWORD=" >> .env
-          echo "DB_HOST=localhost" >> .env
-
-      - name: Run PHP Unit Tests
-        run: |
-          vendor/bin/phpunit --configuration phpunit.xml
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      # Build Docker image (builder stage)
       - name: Build Docker image (builder stage)
         run: docker buildx build --load --target builder -t wp-release:builder .
 
+      # Run PHPUnit tests using the builder image
+      - name: Run PHP Unit Tests
+        run: |
+          docker run --rm wp-release:builder vendor/bin/phpunit --configuration phpunit.xml
+
+      # Build the final Docker image (production stage)
       - name: Build final Docker image (production stage)
         run: docker buildx build --target production -t wp-release:${{ env.VERSION }} . --load
         # Load the image into the local Docker instance for further use
 
+      # Security scan with Trivy
       - name: Security Scan with Trivy
         uses: aquasecurity/trivy-action@master
         with:
