@@ -22,7 +22,7 @@ COPY manifest.json .
 
 # Copy the Composer configuration and install dependencies
 COPY composer.json .
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --optimize-autoloader
 
 # copy the test files
 COPY tests .
@@ -34,6 +34,10 @@ FROM php:8.2-fpm-alpine AS production
 
 # Copy only necessary files from the build stage
 COPY --from=builder /var/www/html /var/www/html
+
+# Copy the Composer configuration and install dependencies
+COPY composer.json .
+RUN composer install --no-dev --optimize-autoloader
 
 # Set the working directory
 WORKDIR /var/www/html
