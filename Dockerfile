@@ -25,7 +25,7 @@ COPY composer.json .
 RUN composer install --optimize-autoloader
 
 # copy the test files
-COPY tests .
+COPY tests/ ./tests/
 COPY phpunit* .
 
 
