@@ -18,15 +18,15 @@ WORKDIR /var/www/html
 # COPY . .
 
 # Copy reelease manifest for release information
-COPY manifest.json .
+COPY manifest.json ./
 
 # Copy the Composer configuration and install dependencies
-COPY composer.json .
+COPY composer.json ./
 RUN composer install --optimize-autoloader
 
 # copy the test files
 COPY tests/ ./tests/
-COPY phpunit* .
+COPY phpunit* ./
 
 
 # Stage 2: Create the final image

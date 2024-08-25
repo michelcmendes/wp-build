@@ -12,7 +12,7 @@ define('WP_TESTS_DOMAIN', 'example.org');
 define('WP_TESTS_EMAIL', 'admin@example.org');
 define('WP_TESTS_TITLE', 'Test Blog');
 define('WP_PHP_BINARY', 'php');
-define('DB_NAME', ':memory:');
+define('DB_NAME', 'wordpress');
 define('DB_USER', 'root');
 define('DB_PASSWORD', 'root');
 define('DB_HOST', 'localhost');

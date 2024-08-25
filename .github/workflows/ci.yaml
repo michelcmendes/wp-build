@@ -26,10 +26,9 @@ jobs:
       - name: Build Docker image (builder stage)
         run: docker buildx build --load --target builder -t wp-release:builder .
 
-      # Run PHPUnit tests using Docker Compose
+      # Run PHPUnit tests using the builder image
       - name: Run PHP Unit Tests
-        run: |
-          docker-compose -f docker-compose.yml run --rm wordpress
+        run: docker run --rm wp-release:builder vendor/bin/phpunit --configuration phpunit.xml
 
       # Build the final Docker image (production stage)
       - name: Build final Docker image (production stage)
