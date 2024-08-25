@@ -21,8 +21,8 @@ define('DB_COLLATE', '');
 define('WP_DEBUG', true);
 
 // Set up the WordPress database
-global $wpdb;
-$wpdb->query('CREATE TABLE wp_options (option_id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, option_name VARCHAR(191) NOT NULL DEFAULT "", option_value LONGTEXT NOT NULL, autoload VARCHAR(20) NOT NULL DEFAULT "yes", PRIMARY KEY  (option_id), UNIQUE KEY option_name (option_name))');
+// global $wpdb;
+// $wpdb->query('CREATE TABLE wp_options (option_id BIGINT(20) UNSIGNED NOT NULL AUTO_INCREMENT, option_name VARCHAR(191) NOT NULL DEFAULT "", option_value LONGTEXT NOT NULL, autoload VARCHAR(20) NOT NULL DEFAULT "yes", PRIMARY KEY  (option_id), UNIQUE KEY option_name (option_name))');
 
 // Load the WordPress test environment.
 $_tests_dir = getenv('WP_PHPUNIT__DIR') ?: '/tmp/wordpress-tests-lib';
