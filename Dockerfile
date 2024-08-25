@@ -30,9 +30,6 @@ RUN chown -R www-data:www-data /var/www/html
 # Stage 2: Create the final image
 FROM wordpress:php8.3-fpm AS production
 
-# Install any additional dependencies or PHP extensions here if needed
-# RUN docker-php-ext-install <additional_extensions>
-
 WORKDIR /var/www/html
 
 # Copy reelease manifest for release information
