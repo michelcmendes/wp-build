@@ -26,7 +26,7 @@ RUN composer install --no-dev --optimize-autoloader
 
 # copy the test files
 COPY tests .
-COPY phpunit.xml .
+COPY phpunit* .
 
 
 # Stage 2: Create the final image

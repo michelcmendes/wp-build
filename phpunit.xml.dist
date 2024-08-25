@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit bootstrap="tests/bootstrap.php"
          colors="true"
-         verbose="true">
+         verbose="true"
+         stopOnFailure="false">
     <testsuites>
         <testsuite name="WordPress Tests">
-            <directory>./tests</directory>
+            <directory>tests/</directory>
         </testsuite>
     </testsuites>
 
@@ -15,5 +16,11 @@
         <env name="DB_PASSWORD" value="root"/>
         <env name="DB_HOST" value="localhost"/>
         <env name="WP_DEBUG" value="true"/>
+        <env name="WP_PHPUNIT__DIR" value="vendor/wordpress/wordpress-tests-lib" />
+        <env name="WP_TESTS_DOMAIN" value="localhost" />
+        <env name="WP_TESTS_EMAIL" value="admin@example.com" />
+        <env name="WP_TESTS_TITLE" value="Test ABC E-Commerce" />
+        <env name="WP_PHP_BINARY" value="php" />
+        <env name="WP_TESTS_MULTISITE" value="0" />
     </php>
 </phpunit>
