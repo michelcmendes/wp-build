@@ -6,8 +6,6 @@ RUN apk add --no-cache \
     libpng-dev \
     libjpeg-turbo-dev \
     freetype-dev \
-    git \
-    unzip \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd
 
@@ -23,7 +21,7 @@ WORKDIR /var/www/html
 COPY manifest.json .
 
 # Copy the Composer configuration and install dependencies
-COPY composer.json ./
+COPY composer.json .
 RUN composer install --no-dev --optimize-autoloader
 
 # copy the test files

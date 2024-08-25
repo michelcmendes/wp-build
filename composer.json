@@ -12,8 +12,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^10.0",
-        "lucatume/wp-browser": "^3.0",
-        "vlucas/phpdotenv": "^5.4"
+        "squizlabs/php_codesniffer": "*",
+        "wp-coding-standards/wpcs": "*"
     },
     "repositories": [
         {
