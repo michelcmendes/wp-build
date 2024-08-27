@@ -5,11 +5,13 @@ FROM wordpress:php8.3-fpm AS builder
 # RUN docker-php-ext-install <additional_extensions>
 
 # Install PHPUnit
-RUN curl -O https://phar.phpunit.de/phpunit-9.phar && \
-    chmod +x phpunit-9.phar && \
-    mv phpunit-9.phar /usr/local/bin/phpunit
+RUN curl -L https://phar.phpunit.de/phpunit-9.phar -o /usr/local/bin/phpunit && \
+    chmod +x /usr/local/bin/phpunit
 
-WORKDIR /var/www/html
+# Verify PHPUnit installation
+RUN phpunit --version
+
+WORKDIR /usr/src/wordpress
 
 # (Optional) Copy the entire application codebase
 # COPY . .
@@ -30,7 +32,7 @@ RUN chown -R www-data:www-data /var/www/html
 # Stage 2: Create the final image
 FROM wordpress:php8.3-fpm AS production
 
-WORKDIR /var/www/html
+WORKDIR /usr/src/wordpress
 
 # Copy reelease manifest for release information
 COPY manifest.json ./

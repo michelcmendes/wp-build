@@ -1,9 +1,5 @@
 <?php
 
-// // Load the Composer autoloader
-require dirname(__DIR__) . '/vendor/autoload.php';
-
-
 // Set up the WordPress environment
 define('WP_TESTS_DOMAIN', 'example.org');
 define('WP_TESTS_EMAIL', 'admin@example.org');
@@ -17,16 +13,17 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 define('WP_DEBUG', true);
 
-// Load WordPress test functions
+// Set the absolute path to the WordPress directory
 if (!defined('ABSPATH')) {
-    define('ABSPATH', dirname(__FILE__) . '/../');
+    define('ABSPATH', '/usr/src/wordpress/');
 }
-require_once ABSPATH . 'wp-load.php';
 
-// Start up the WP testing environment
+// Load WordPress and the testing environment
+require_once ABSPATH . 'wp-load.php';
 require_once ABSPATH . 'wp-admin/includes/admin.php';
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
-// Set up the WordPress testing environment
+// Load the WordPress test functions and bootstrap
+require_once ABSPATH . 'wp-tests-config.php';  // Assuming you have a wp-tests-config.php in the root
 require_once __DIR__ . '/includes/functions.php';
 require_once __DIR__ . '/includes/bootstrap.php';

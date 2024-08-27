@@ -32,7 +32,7 @@ jobs:
       
       - name: Run PHP Unit Tests
         run: |
-          docker run --rm wp-release:builder phpunit --configuration phpunit.xml
+          docker run --rm -e HTTP_HOST=localhost -e WORDPRESS_DB_HOST=localhost -e WORDPRESS_DB_USER=root -e WORDPRESS_DB_PASSWORD=root wp-release:builder phpunit --configuration phpunit.xml
 
       - name: Build final Docker image (production stage)
         run: docker buildx build --load --target production -t wp-release:${{ env.VERSION }} .
